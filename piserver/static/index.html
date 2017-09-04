@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+  <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					 
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+					</button> <a class="navbar-brand" href="#">Reboot-camp</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="#">Link</a>
+						</li>
+						<li>
+							<a href="#">Link</a>
+						</li>
+					</ul>
+					<form class="navbar-form navbar-right" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" />
+						</div> 
+						<button type="submit" class="btn btn-default">
+							Submit
+						</button>
+					</form>
+				</div>
+				
+			</nav>
+			<div class="jumbotron">
+				<h2>
+					Hello, world!
+				</h2>
+				<p>
+					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-bottom:100px">
+		<div class="col-md-4">
+			<h2>
+				Bière GUINNESS
+			</h2>
+			<p>
+				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+			</p>
+			<img alt="Bootstrap Image Preview" src="https://i.pinimg.com/736x/f9/80/ca/f980cae03fb863e26506db32bb53cf8b--people-photography-life-photography.jpg" /> 
+			<button type="button" class="btn btn-default" data-item="guinness">
+				Commander
+			</button>
+		</div>
+		<div class="col-md-4">
+			<h2>
+				Bouteille d'eau
+			</h2>
+			<p>
+				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+			</p>
+			<img alt="Bootstrap Image Preview" src="http://www.welcomeoffice.com/WO_Products_Images/xlarge/569808.jpg" /> 
+			<button type="button" class="btn btn-default" data-item="bouteille-eau">
+				Commander
+			</button>
+		</div>
+		<div class="col-md-4">
+			<h2>
+				Barres de chocolat
+			</h2>
+			<p>
+				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+			</p>
+			<img alt="Bootstrap Image Preview" src="https://fridg-front.s3.amazonaws.com/media/CACHE/images/products/mars_T8XRkgE/6b8a63296049aa86e5d4ae97235a20be.jpg" /> 
+			<button id="myButton" type="button" class="btn btn-default" data-item="barre-choco">
+				Commander
+			</button>
+		</div>
+	</div>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+    $(function () {
+	    var socket = io();
+	    $('.btn').on('click', function(e){
+	    	console.log('clicked');
+	    	e.preventDefault();
+	      socket.emit('message', $(this).attr('data-item'));
+	      return false;
+	    });
+	  });
+  </script>
+
+</body>
+</html>
