@@ -1,6 +1,6 @@
 module.exports = {
   WEBSERVER_ADDRESS: 'http://localhost',
   WEBSERVER_PORT: '8080',
-  PISERVER_ADDRESS: 'http://localhost',
+  PISERVER_ADDRESS: 'http://192.168.0.95',
   PISERVER_PORT: '6060',
 };

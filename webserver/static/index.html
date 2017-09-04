@@ -78,7 +78,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12" style="text-align: center; padding-bottom: 80px;">
-		<form action="post">
+		<form action="POST" id="select-products">
  			<div  class=“form-group”>
     			<input type="checkbox" name="biere" value="">
     			<label for="biere">Bière</label>
@@ -100,15 +100,29 @@
 
 	<div class="row">
 		<div class="col-md-12" style="text-align: center; padding-bottom: 80px;">
-		<button>allumer/éteindre</button>
+			<button id="on-off-button" data-test="hello pi !">allumer/éteindre</button>
 		</div>
 	</div>
 </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-  <script>
-    var socket = io();
-  </script>
+	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<script>
+	  $(function () {
+	    var socket = io();
+	    $('#on-off-button').click(function(e){
+	    	e.preventDefault();
+	      socket.emit('test', $(this).attr('data-test'));
+	      return false;
+	    });
 
-</body>
+	    $('#select-products').submit(function(e){
+	    	e.preventDefault();
+	    	socket.emit('products', $(this).serialize());
+	      return false;
+	    });
+	  });
+	</script>
+
+	</body>
 </html>
