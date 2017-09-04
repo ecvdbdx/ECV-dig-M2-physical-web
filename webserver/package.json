@@ -1,5 +1,5 @@
 {
-  "name": "reboot-cam-webserver",
+  "name": "reboot-camp-webserver",
   "version": "1.0.0",
   "description": "The webserver for reboot-camp ECVD project",
   "main": "index.js",
