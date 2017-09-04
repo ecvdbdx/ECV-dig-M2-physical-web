@@ -14,6 +14,6 @@ io.on('connection', (socket) => {
   });
 });
 
-http.listen(settings.PISERVER_PORT, () => {
+http.listen(settings.PISERVER_PORT, '0.0.0.0', () => {
   console.log(`Server listening on port ${settings.PISERVER_PORT}`);
 });

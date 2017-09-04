@@ -20,10 +20,14 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('connected');
-  socket.on('message', (msg) => {
-    console.log('message: ' + msg);
+  socket.on('test', (msg) => {
+    console.log(msg);
     // Route event to piserver
     client.emit('piserver', msg);
+  });
+
+  socket.on('products', (products) => {
+    console.log(products);
   });
 });
 
