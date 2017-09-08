@@ -39,9 +39,11 @@
     socket: {
       events: {
         busy() {
+          console.log('busy');
           this.isBusy = true;
         },
         done() {
+          console.log('done');
           this.isBusy = false;
         },
       },
