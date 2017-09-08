@@ -1,7 +1,6 @@
 const express = require('express');
-const path = require('path');
 const settings = require('../settings.js');
-const getProducts = require('./products.js');
+const rpio = require('rpio');
 
 const app = express();
 
