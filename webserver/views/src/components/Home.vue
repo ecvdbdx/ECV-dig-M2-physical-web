@@ -32,9 +32,8 @@
     },
     mounted() {
       axios.get(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/api/products`)
-        .then(response => response.json())
-        .then((data) => {
-          this.products = data;
+        .then((response) => {
+          this.products = response.data;
         });
     },
     socket: {
