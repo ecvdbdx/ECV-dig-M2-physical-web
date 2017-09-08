@@ -1,14 +1,13 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VueWebsocket from 'vue-websocket';
 
 import App from './App';
 import router from './router';
+import * as settings from '../../../settings';
 
 Vue.config.productionTip = false;
 
-Vue.use(VueWebsocket, 'http://localhost:3030');
+Vue.use(VueWebsocket, `${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_SOCKET_PORT}`);
 
 /* eslint-disable no-new */
 new Vue({

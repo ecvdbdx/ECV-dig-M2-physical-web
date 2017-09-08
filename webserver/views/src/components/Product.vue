@@ -2,18 +2,34 @@
   <div class="product col-md-4">
     <h2>{{product.name}}</h2>
     <div class="product-image">
-      <img alt="Bootstrap Image Preview" :src="`http://192.168.0.209:3000/${product.image_url}`" @click.prevent="sendProduct()" />
+      <img alt="Bootstrap Image Preview" :src="`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/${product.image_url}`" @click.prevent="sendProduct()" />
     </div>
   </div>
 </template>
 
 <script>
+  import * as settings from '../../../../settings';
+
   export default {
     name: 'Product',
     props: ['product'],
+    data() {
+      return {
+        loading: false,
+        settings,
+      };
+    },
     methods: {
       sendProduct() {
+        this.loading = true;
         this.$socket.emit('product', this.product.machine_id);
+      },
+    },
+    socket: {
+      events: {
+        done() {
+          this.loading = false;
+        },
       },
     },
   };
