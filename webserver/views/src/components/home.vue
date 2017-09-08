@@ -43,37 +43,35 @@
     <div class="row">
       <div class="col-md-12" style="text-align: center; padding-bottom: 80px;">
         <form action="POST" id="select-products">
-          <div class=“form-group”>
+        <div class="form-group">
           <div class="col-md-4">
-        <h2>
-          Bière GUINNESS
-        </h2>
-      
-        <label for="biere">
-          <input type="checkbox" name="biere" value="bière" v-model="products">
-          <img alt="Bootstrap Image Preview" src="https://i.pinimg.com/736x/f9/80/ca/f980cae03fb863e26506db32bb53cf8b--people-photography-life-photography.jpg" />
-        </label>
-      </div>
+              <h2>Bière GUINNESS</h2>
+              <label class="btn btn-primary">
+              <input class="hidden" type="checkbox" name="biere" value="bière" v-model="products">
+                <img alt="Bootstrap Image Preview" src="https://i.pinimg.com/736x/f9/80/ca/f980cae03fb863e26506db32bb53cf8b--people-photography-life-photography.jpg" />
+            </label>
           </div>
+
           <div class="col-md-4">
-              <h2>
-                Bouteille d'eau
-              </h2>
-              <img alt="Bootstrap Image Preview" src="http://www.welcomeoffice.com/WO_Products_Images/xlarge/569808.jpg" />
-              <input type="checkbox" name="eau" value="eau" v-model="products">
-              <label for="eau" class="hidden">Eau</label>
-            </div>
+              <h2>Bouteille d'eau</h2>
+              <label class="btn btn-primary">
+              <input class="hidden" type="checkbox" name="eau" value="eau" v-model="products">
+                <img alt="Bootstrap Image Preview" src="http://www.welcomeoffice.com/WO_Products_Images/xlarge/569808.jpg" />
+              </label>
+          </div>
+
           <div class="col-md-4">
-        <h2>
-          Barres de chocolat
-        </h2>
-        <img alt="Bootstrap Image Preview" src="https://fridg-front.s3.amazonaws.com/media/CACHE/images/products/mars_T8XRkgE/6b8a63296049aa86e5d4ae97235a20be.jpg" />
-        <input type="checkbox" name="barre" value="barre" v-model="products">
-            <label for="barre" class="hidden">Barre</label>
-      </div>
+              <h2>Barres de chocolat</h2>
+              <label class="btn btn-primary">
+              <input class="hidden" type="checkbox" name="barre" value="barre" v-model="products">
+                <img alt="Bootstrap Image Preview" src="https://fridg-front.s3.amazonaws.com/media/CACHE/images/products/mars_T8XRkgE/6b8a63296049aa86e5d4ae97235a20be.jpg" />
+            </label>
+          </div>
           
           <div>
-            <button type="submit" @click.prevent="sendProducts()">Commander</button>
+            <button style="margin-top:30px;" type="submit" @click.prevent="sendProducts()">Commander</button>
+          </div>
+
           </div>
         </form>
       </div>
@@ -86,6 +84,13 @@
     </div>
   </div>
 </template>
+
+<style type="text/css">
+/*input[type=checkbox] {
+  display: none;
+}*/
+</style>
+
 
 <script>
   export default {
