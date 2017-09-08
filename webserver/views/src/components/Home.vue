@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12" style="text-align: center; padding-bottom: 80px;">
         <div class="row">
-          <product v-for="product in products" :product="product" :key="product.id"></product>
+          <product v-for="product in products" :product="product" :isBusy="isBusy" :key="product.id"></product>
         </div>
       </div>
     </div>
