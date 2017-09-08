@@ -1,6 +1,6 @@
 <template>
-  <div class="product col-md-4" @click.prevent="sendProduct()">
-    <div class="product-container" :class="{disabled: isOutOfStock || isBusy}">
+  <div class="product col-md-4">
+    <div class="product-container" :class="{disabled: isOutOfStock || isBusy}" @click.prevent="sendProduct()">
       <div class="product-details">
         <h2>{{product.name}}</h2>
         <span>Restants: <span>{{product.current_stock}}</span></span>
@@ -88,7 +88,7 @@
     display: flex;
     width: 100%;
   }
-  .product.col-md-4.disabled {
+  .product-container.disabled {
     pointer-events: none;
     opacity: 0.2;
   }
