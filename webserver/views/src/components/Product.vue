@@ -1,11 +1,13 @@
 <template>
-  <div class="product col-md-4" :class="{disabled: isOutOfStock || isBusy}" @click.prevent="sendProduct()">
-    <div class="product-details">
-      <h2>{{product.name}}</h2>
-      <span>Restants: <span>{{product.current_stock}}</span></span>
-    </div>
-    <div class="product-image">
-      <img alt="Bootstrap Image Preview" :src="`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/${product.image_url}`" @click.prevent="sendProduct()" />
+  <div class="product col-md-4" @click.prevent="sendProduct()">
+    <div class="product-container" :class="{disabled: isOutOfStock || isBusy}">
+      <div class="product-details">
+        <h2>{{product.name}}</h2>
+        <span>Restants: <span>{{product.current_stock}}</span></span>
+      </div>
+      <div class="product-image">
+        <img alt="Bootstrap Image Preview" :src="`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/${product.image_url}`" @click.prevent="sendProduct()" />
+      </div>
     </div>
     <loader v-if="loading"></loader>
   </div>
@@ -81,6 +83,10 @@
     -webkit-box-shadow: 9px 9px 28px -10px rgba(0,0,0,0.17);
     -moz-box-shadow: 9px 9px 28px -10px rgba(0,0,0,0.17);
     box-shadow: 9px 9px 28px -10px rgba(0,0,0,0.17);
+  }
+  .product-container {
+    display: flex;
+    width: 100%;
   }
   .product.col-md-4.disabled {
     pointer-events: none;
