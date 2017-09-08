@@ -22,34 +22,42 @@ io.on('connection', (socket) => {
     switch (product) {
         case 'A23':
             console.log('A23');
-            rpio.open(7, rpio.OUTPUT, rpio.LOW);
-            rpio.write(7, rpio.HIGH);
+            rpio.open(15, rpio.OUTPUT, rpio.HIGH);
+            rpio.write(15, rpio.LOW);
             rpio.sleep(5.2);
-            rpio.write(7, rpio.LOW);
+            rpio.write(15, rpio.HIGH);
             client.emit('done');
             break;
         case 'A22':
             console.log('A22');
-            rpio.open(11, rpio.OUTPUT, rpio.LOW);
-            rpio.write(11, rpio.HIGH);
-            rpio.sleep(5.2);
+            rpio.open(11, rpio.OUTPUT, rpio.HIGH);
             rpio.write(11, rpio.LOW);
+            rpio.sleep(5.2);
+            rpio.write(11, rpio.HIGH);
             client.emit('done');
             break;
         case 'A51':
             console.log('A51');
-            rpio.open(13, rpio.OUTPUT, rpio.LOW);
-            rpio.write(13, rpio.HIGH);
+            rpio.open(12, rpio.OUTPUT, rpio.HIGH);
+            rpio.write(12, rpio.LOW);
             rpio.sleep(5.2);
-            rpio.write(13, rpio.LOW);
+            rpio.write(12, rpio.HIGH);
             client.emit('done');
             break;
         case 'A52':
             console.log('A52');
-            rpio.open(15, rpio.OUTPUT, rpio.LOW);
-            rpio.write(15, rpio.HIGH);
+            rpio.open(16, rpio.OUTPUT, rpio.HIGH);
+            rpio.write(16, rpio.LOW);
             rpio.sleep(5.2);
-            rpio.write(15, rpio.LOW);
+            rpio.write(16, rpio.HIGH);
+            client.emit('done');
+            break;
+        case 'A53':
+            console.log('A53');
+            rpio.open(18, rpio.OUTPUT, rpio.HIGH);
+            rpio.write(18, rpio.LOW);
+            rpio.sleep(5.2);
+            rpio.write(18, rpio.HIGH);
             client.emit('done');
             break;
         default:
