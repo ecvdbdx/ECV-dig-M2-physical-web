@@ -11,7 +11,7 @@ const io = require('socket.io')(http);
 
 // Creates Socket.io client to emit events to piserver
 const clientio = require('socket.io-client');
-const client = clientio.connect(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_PORT}`);
+const client = clientio.connect(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_SOCKET_PORT}`);
 
 express.static('static');
 

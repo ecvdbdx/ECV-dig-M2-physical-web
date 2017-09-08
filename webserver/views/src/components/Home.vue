@@ -19,20 +19,32 @@
 
 <script>
   import Product from '../components/Product';
+  import * as settings from '../../../../settings';
 
   export default {
     name: 'Home',
     data() {
       return {
         products: [],
+        isBusy: false,
       };
     },
     mounted() {
-      fetch('http://192.168.0.209:3000/api/products')
+      fetch(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/api/products`)
         .then(response => response.json())
         .then((data) => {
           this.products = data;
         });
+    },
+    socket: {
+      events: {
+        busy() {
+          this.isBusy = true;
+        },
+        done() {
+          this.isBusy = false;
+        },
+      },
     },
     components: {
       Product,
