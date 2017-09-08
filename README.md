@@ -10,3 +10,14 @@ The webserver is used as a bridge between the client and the raspberry powered v
 npm i && node index.js
 ```
 
+### Raspberry
+
+To connect to raspberry, use ssh connection
+
+```
+ssh pi@192.168.0.95
+```
+
+Raspberry address :
+* Eddystone : http://192.168.0.102
+* Cavani : http://192.168.0.95
