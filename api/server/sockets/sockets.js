@@ -23,6 +23,15 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('connected');
+
+  socket.on('busy', () => {
+    console.log('busy!');
+  });
+
+  socket.on('available', () => {
+    console.log('available!');
+  });
+
   socket.on('test', (msg) => {
     console.log(msg);
     // Route event to piserver
