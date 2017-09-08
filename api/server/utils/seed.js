@@ -38,7 +38,7 @@ const newProducts = [
         max_stock: 6,
         current_stock: 5,
         machine_id: 'A52',
-        image_url: 'static/products/guinness.jpg'
+        image_url: 'static/products/guinness.png'
     }
 ];
 
