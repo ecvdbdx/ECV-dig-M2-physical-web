@@ -26,12 +26,12 @@ io.on('connection', (socket) => {
 
   socket.on('busy', () => {
     console.log('busy!');
-    io.broadcast.emit('busy');
+    socket.broadcast.emit('busy');
   });
 
   socket.on('done', () => {
     console.log('done!');
-    io.broadcast.emit('done');
+    socket.broadcast.emit('done');
   });
 
   socket.on('test', (msg) => {
