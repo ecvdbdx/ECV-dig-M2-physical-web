@@ -18,7 +18,8 @@ function saveProduct(req, res, next) {
         name: res.body.name,
         max_stock: res.body.max_stock,
         current_stock: res.body.current_stock,
-        machine_id: res.body.machine_id
+        machine_id: res.body.machine_id,
+        image_url: res.body.image_url
     };
 
     products.save(product, function(err, saved) {

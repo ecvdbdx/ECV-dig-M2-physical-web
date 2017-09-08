@@ -6,28 +6,39 @@ products.drop();
 
 const newProducts = [
     {
-        name: 'Product 1',
-        max_stock: 10,
-        current_stock: 8,
-        machine_id: 'A21'
+        name: 'Smarties',
+        max_stock: 15,
+        current_stock: 5,
+        machine_id: 'A23',
+        image_url: 'static/products/smarties.jpg'
     },
     {
-        name: 'Product 2',
-        max_stock: 10,
-        current_stock: 10,
-        machine_id: 'A22'
+        name: 'Balisto',
+        max_stock: 15,
+        current_stock: 9,
+        machine_id: 'A22',
+        image_url: 'static/products/balisto.jpg'
     },
     {
-        name: 'Product 3',
-        max_stock: 10,
+        name: 'Smokehouse Almonds',
+        max_stock: 6,
+        current_stock: 3,
+        machine_id: 'A53',
+        image_url: 'static/products/smokehouse-almonds.jpg'
+    },
+    {
+        name: 'Hépar',
+        max_stock: 6,
         current_stock: 6,
-        machine_id: 'A23'
+        machine_id: 'A51',
+        image_url: 'static/products/hepar.jpg'
     },
     {
-        name: 'Product 4',
-        max_stock: 10,
-        current_stock: 7,
-        machine_id: 'A24'
+        name: 'Guinness',
+        max_stock: 6,
+        current_stock: 5,
+        machine_id: 'A52',
+        image_url: 'static/products/guinness.jpg'
     }
 ];
 
