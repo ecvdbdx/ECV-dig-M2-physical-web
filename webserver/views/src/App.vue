@@ -7,11 +7,13 @@
 
 <script>
 import RCHeader from './components/RCHeader';
+import Loader from './components/Loader';
 
 export default {
   name: 'app',
   components: {
     RCHeader,
+    Loader,
   },
 };
 </script>
