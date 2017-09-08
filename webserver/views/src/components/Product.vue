@@ -6,7 +6,7 @@
         <span>Restants: <span>{{product.current_stock}}</span></span>
       </div>
       <div class="product-image">
-        <img alt="Bootstrap Image Preview" :src="`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/${product.image_url}`" @click.prevent="sendProduct()" />
+        <img alt="Bootstrap Image Preview" :src="`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/${product.image_url}`" />
       </div>
     </div>
     <loader v-if="loading"></loader>
