@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require('path');
 const settings = require('../../../settings.js');
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors());
 
 // Creates Socket.io server to receive events from user's client
 const http = require('http').Server(app);
@@ -26,9 +29,9 @@ io.on('connection', (socket) => {
     client.emit('piserver', msg);
   });
 
-  socket.on('products', (products) => {
+  socket.on('product', (products) => {
     console.log(products);
-    client.emit('products', products);
+    client.emit('product', products);
   });
 });
 
