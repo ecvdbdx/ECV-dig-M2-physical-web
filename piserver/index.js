@@ -16,6 +16,7 @@ const client = clientio.connect(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSER
 express.static('static');
 
 io.on('connection', (socket) => {
+  console.log('connected');
   socket.on('products', (products) => {
     switch (products) {
       case 'A23':
@@ -47,4 +48,8 @@ io.on('connection', (socket) => {
     const msg = 'Your product has been delivered';
     client.emit('message', msg);
   });
+});
+
+http.listen(settings.PISERVER_PORT, '0.0.0.0', () => {
+  console.log(`Server listening on port ${settings.PISERVER_PORT}`);
 });
