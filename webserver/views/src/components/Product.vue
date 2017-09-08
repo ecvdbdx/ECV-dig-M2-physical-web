@@ -2,7 +2,7 @@
   <div class="product col-md-4" :class="{disabled: isOutOfStock || isBusy}" @click.prevent="sendProduct()">
     <div class="product-details">
       <h2>{{product.name}}</h2>
-      <span>Restants: <span>{{product.max_stock}}</span></span>
+      <span>Restants: <span>{{product.current_stock}}</span></span>
     </div>
     <div class="product-image">
       <img alt="Bootstrap Image Preview" :src="`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/${product.image_url}`" @click.prevent="sendProduct()" />
@@ -39,7 +39,7 @@
     },
     computed: {
       isOutOfStock() {
-        if (this.product.max_stock < 1) {
+        if (this.product.current_stock < 1) {
           return true;
         }
         return false;
@@ -67,7 +67,7 @@
     align-items: center;
     justify-content: center;
     width: 250px;
-    height: 200px;
+    height: 150px;
     cursor: pointer;
     width: 50%;
   }
