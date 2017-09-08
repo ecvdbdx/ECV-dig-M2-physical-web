@@ -18,6 +18,7 @@
 
 
 <script>
+  import axios from 'axios';
   import Product from '../components/Product';
   import * as settings from '../../../../settings';
 
@@ -30,7 +31,7 @@
       };
     },
     mounted() {
-      fetch(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/api/products`)
+      axios.get(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/api/products`)
         .then(response => response.json())
         .then((data) => {
           this.products = data;
