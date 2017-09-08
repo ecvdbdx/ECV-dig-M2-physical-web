@@ -11,6 +11,7 @@
   "dependencies": {
     "express": "^4.15.4",
     "rpio": "^0.9.17",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3"
   }
 }

@@ -28,6 +28,7 @@ io.on('connection', (socket) => {
 
   socket.on('products', (products) => {
     console.log(products);
+    client.emit('products', products);
   });
 });
 
