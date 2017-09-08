@@ -44,6 +44,6 @@ io.on('connection', (socket) => {
   });
 });
 
-http.listen(settings.WEBSERVER_PORT, () => {
+http.listen(settings.WEBSERVER_SOCKET_PORT, () => {
   console.log(`Server listening on port ${settings.WEBSERVER_SOCKET_PORT}`);
 });
