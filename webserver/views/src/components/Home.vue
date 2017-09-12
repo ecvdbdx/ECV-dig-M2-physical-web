@@ -11,9 +11,9 @@
 </template>
 
 <style type="text/css">
-/*input[type=checkbox] {
-  display: none;
-}*/
+  /*input[type=checkbox] {
+    display: none;
+  }*/
 </style>
 
 
@@ -21,6 +21,7 @@
   import axios from 'axios';
   import Product from '../components/Product';
   import * as settings from '../../../../settings';
+  import * as events from '../../../../socket-events';
 
   export default {
     name: 'Home',
@@ -39,11 +40,11 @@
     socket: {
       events: {
         busy() {
-          console.log('busy');
+          console.log(`Receive new event: ${events.BUSY}`);
           this.isBusy = true;
         },
         done() {
-          console.log('done');
+          console.log(`Receive new event: ${events.DONE}`);
           this.isBusy = false;
         },
       },
