@@ -10,7 +10,7 @@ const events = require('../socket-events');
 const machine = require('../machine-mapping');
 
 // Creates Socket.io client to emit events to webserver
-const client = clientio.connect(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_SOCKET_PORT}`);
+const client = clientio.connect(settings.URL_SOCKET);
 
 io.on(events.CONNECTION, (socket) => {
     console.log('New client connected: ', socket.handshake.address);
@@ -43,6 +43,6 @@ function distributeProduct(product) {
     client.emit(events.DONE, product);
 }
 
-http.listen(settings.PISERVER_PORT, '0.0.0.0', () => {
-    console.log(`Server listening on port ${settings.PISERVER_PORT}`);
+http.listen(settings.PORT_PISERVER, '0.0.0.0', () => {
+    console.log(`Server listening on port ${settings.PORT_PISERVER}`);
 });

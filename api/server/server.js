@@ -8,6 +8,6 @@ app.use(cors());
 // Setup the api
 app.use('/api', api);
 // Setup the static files
-app.use('/static', express.static('assets'));
+app.use(express.static('assets'));
 
 module.exports = app;

@@ -1,8 +1,9 @@
 const app = require('./server/server');
-const config = require('./server/config/config');
+
+const settings = require('../settings');
 
 require('./server/utils/seed');
 
-app.listen(config.port, () => {
-    console.log(`Connected to http://localhost:${config.port}`);
+app.listen(settings.API_PORT, () => {
+    console.log(`Server listening on port ${settings.API_PORT}`);
 });

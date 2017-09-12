@@ -19,9 +19,9 @@ const io = require('socket.io')(http);
 
 // Creates Socket.io client to emit events to piserver
 const clientio = require('socket.io-client');
-const client = clientio.connect(`${settings.PISERVER_ADDRESS}:${settings.PISERVER_PORT}`);
+const client = clientio.connect(settings.URL_PISERVER);
 
-express.static('views/dist');
+express.static('assets');
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/views/dist/index.html'));
@@ -66,6 +66,6 @@ io.on(events.CONNECTION, (socket) => {
     });
 });
 
-http.listen(settings.WEBSERVER_SOCKET_PORT, () => {
-    console.log(`Server listening on port ${settings.WEBSERVER_SOCKET_PORT}`);
+http.listen(settings.PORT_SOCKET, () => {
+    console.log(`Server listening on port ${settings.PORT_SOCKET}`);
 });

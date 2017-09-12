@@ -19,13 +19,6 @@
   </div>
 </template>
 
-<style type="text/css">
-  /*input[type=checkbox] {
-    display: none;
-  }*/
-</style>
-
-
 <script>
   import axios from 'axios';
   import Product from './Product';
@@ -57,7 +50,7 @@
       },
     },
     mounted() {
-      axios.get(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/api/products`)
+      axios.get(`${settings.URL_API}/api/products`)
         .then((response) => {
           this.products = response.data;
           this.filterCategories();
