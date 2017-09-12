@@ -41,16 +41,16 @@ io.on(events.CONNECTION, (socket) => {
         console.log(`Emit new event: ${events.BUSY}`);
         isBusy = true;
         socket.broadcast.emit(events.BUSY);
+    });
 
-        products.update({'machine_id': product}, {$inc: {'current_stock': -1}}, (err, saved) => {
+    socket.on(events.DONE, (product) => {
+        products.update({ 'machine_id': product }, { $inc: { 'current_stock': -1 } }, (err, saved) => {
             if (err) {
                 throw err;
             }
             console.log(product, `Stock updated for product: ${product}`);
         });
-    });
 
-    socket.on(events.DONE, () => {
         console.log(`Emit new event: ${events.DONE}`);
         isBusy = false;
         socket.broadcast.emit(events.DONE);
