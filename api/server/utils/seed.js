@@ -41,39 +41,39 @@ const newProducts = [
         image_url: 'static/products/guinness.png'
     },
     {
-        name: 'Guinness',
+        name: 'Orange',
         max_stock: 6,
         current_stock: 5,
         machine_id: 'A26',
-        image_url: 'static/products/guinness.png'
+        image_url: 'static/products/river-orange.jpg'
     },
     {
-        name: 'Guinness',
+        name: 'Smoothie Pomme/Fraise',
         max_stock: 6,
         current_stock: 5,
         machine_id: 'A27',
-        image_url: 'static/products/guinness.png'
+        image_url: 'static/products/ikea-apple-strawberry.JPG'
     },
     {
-        name: 'Guinness',
+        name: 'Smoothie Framboise',
         max_stock: 6,
         current_stock: 5,
         machine_id: 'A28',
-        image_url: 'static/products/guinness.png'
+        image_url: 'static/products/ikea-raspberry.JPG'
     },
     {
-        name: 'Smarties',
+        name: 'Choco & Biscuit',
         max_stock: 15,
         current_stock: 5,
         machine_id: 'A51',
-        image_url: 'static/products/smarties.jpg'
+        image_url: 'static/products/chateau-choco.jpg'
     },
     {
-        name: 'Balisto',
+        name: 'Mini Brownie',
         max_stock: 15,
         current_stock: 9,
         machine_id: 'A52',
-        image_url: 'static/products/balisto.jpg'
+        image_url: 'static/products/mini-brownie.jpg'
     },
     {
         name: 'Smokehouse Almonds',
