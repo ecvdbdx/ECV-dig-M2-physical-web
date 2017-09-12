@@ -50,6 +50,7 @@ io.on(events.CONNECTION, (socket) => {
             }
             console.log(product, `Stock updated for product: ${product}`);
             console.log(product, `Emit new event: ${events.UPDATE_STOCK}`);
+            socket.emit(events.PROCESSING, false);
             socket.broadcast.emit(events.UPDATE_STOCK, product);
         });
 
@@ -60,6 +61,7 @@ io.on(events.CONNECTION, (socket) => {
 
     socket.on(events.PRODUCT, (product) => {
         console.log(`Emit new event: ${events.PRODUCT} - ${product}`);
+        socket.emit(events.PROCESSING, true);
         client.emit(events.PRODUCT, product);
     });
 });
