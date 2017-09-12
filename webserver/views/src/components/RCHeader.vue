@@ -1,9 +1,7 @@
 <template>
-  <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <title>Document</title>
-  </head>
+  <header>
+    Give me a beer
+  </header>
 </template>
 
 <script>
@@ -11,3 +9,12 @@
     name: 'RCHeader',
   };
 </script>
+
+<style>
+  header {
+    padding: 18px 0 25px 0;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2em;
+    color: #00BFA5;
+  }
+</style>

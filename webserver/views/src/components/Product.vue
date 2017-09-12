@@ -11,6 +11,7 @@
       </div>
     </div>
     <loader v-if="loading"></loader>
+    <poppin :class="{active: showPoppin}"></poppin>
   </div>
 </template>
 
@@ -18,6 +19,7 @@
   import * as settings from '../../../../settings';
   import * as events from '../../../../socket-events';
   import Loader from './Loader';
+  import Poppin from './Poppin';
 
   export default {
     name: 'Product',
@@ -50,9 +52,13 @@
       isOutOfStock() {
         return this.product.current_stock < 1;
       },
+      showPoppin() {
+        return this.isBusy && !this.loading;
+      },
     },
     components: {
       Loader,
+      Poppin,
     },
   };
 </script>
