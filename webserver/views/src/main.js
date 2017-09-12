@@ -7,7 +7,7 @@ import * as settings from '../../../settings';
 
 Vue.config.productionTip = false;
 
-Vue.use(VueWebsocket, `${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_SOCKET_PORT}`);
+Vue.use(VueWebsocket, settings.URL_SOCKET);
 
 /* eslint-disable no-new */
 new Vue({
