@@ -1,11 +1,13 @@
 const express = require('express');
 const path = require('path');
-const settings = require('../../../settings.js');
 const cors = require('cors');
 
 const mongojs = require('mongojs');
 const db = mongojs('gmab_db');
 const products = db.collection('products');
+
+const settings = require('../../../settings.js');
+const events = require('../../../socket-events.js');
 
 const app = express();
 
@@ -16,47 +18,52 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
 // Creates Socket.io client to emit events to piserver
-const clientio  = require('socket.io-client');
-const client    = clientio.connect(`${settings.PISERVER_ADDRESS}:${settings.PISERVER_PORT}`);
+const clientio = require('socket.io-client');
+const client = clientio.connect(`${settings.PISERVER_ADDRESS}:${settings.PISERVER_PORT}`);
 
 express.static('views/dist');
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/views/dist/index.html'));
+    res.sendFile(path.join(__dirname + '/views/dist/index.html'));
 });
 
-io.on('connection', (socket) => {
-  console.log('connected');
+// GLOBAL VARIABLES
+let isBusy = false;
 
-  socket.on('busy', () => {
-    console.log('busy!');
-    socket.broadcast.emit('busy');
-  });
+io.on(events.CONNECTION, (socket) => {
+    console.log('New client connected: ', socket.handshake.address);
+    if (isBusy) {
+        console.log(`Emit new event: ${events.BUSY}`);
+        socket.emit(events.BUSY);
+    }
 
-  socket.on('done', (product) => {
-    console.log('done!');
-    socket.broadcast.emit('done');
-
-    products.update({'machine_id': product}, {$inc: {'current_stock': -1}}, (err, saved) => {
-      if (err) {
-        throw err;
-      }
-      console.log(product, 'stock updated');
+    socket.on(events.BUSY, () => {
+        console.log(`Emit new event: ${events.BUSY}`);
+        isBusy = true;
+        socket.broadcast.emit(events.BUSY);
     });
-  });
 
-  socket.on('test', (msg) => {
-    console.log(msg);
-    // Route event to piserver
-    client.emit('piserver', msg);
-  });
+    socket.on(events.DONE, (product) => {
+        products.update({ 'machine_id': product }, { $inc: { 'current_stock': -1 } }, (err, saved) => {
+            if (err) {
+                throw err;
+            }
+            console.log(product, `Stock updated for product: ${product}`);
+            console.log(product, `Emit new event: ${events.UPDATE_STOCK}`);
+            socket.broadcast.emit(events.UPDATE_STOCK, product);
+        });
 
-  socket.on('product', (products) => {
-    console.log(products);
-    client.emit('product', products);
-  });
+        console.log(`Emit new event: ${events.DONE}`);
+        isBusy = false;
+        socket.broadcast.emit(events.DONE);
+    });
+
+    socket.on(events.PRODUCT, (product) => {
+        console.log(`Emit new event: ${events.PRODUCT} - ${product}`);
+        client.emit(events.PRODUCT, product);
+    });
 });
 
 http.listen(settings.WEBSERVER_SOCKET_PORT, () => {
-  console.log(`Server listening on port ${settings.WEBSERVER_SOCKET_PORT}`);
+    console.log(`Server listening on port ${settings.WEBSERVER_SOCKET_PORT}`);
 });

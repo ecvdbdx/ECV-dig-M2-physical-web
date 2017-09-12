@@ -1,71 +1,58 @@
 const express = require('express');
-const settings = require('../settings.js');
 const rpio = require('rpio');
-
 const app = express();
-
-console.log('on');
-
-// Creates Socket.io server to receive events from webserver
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const clientio = require('socket.io-client');
+
+const settings = require('../settings.js');
+const events = require('../socket-events');
 
 // Creates Socket.io client to emit events to webserver
-const clientio = require('socket.io-client');
 const client = clientio.connect(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_SOCKET_PORT}`);
 
-io.on('connection', (socket) => {
-  console.log('connected');
-  socket.on('product', (product) => {
-    client.emit('busy');
+io.on(events.CONNECTION, (socket) => {
+    console.log('New client connected: ', socket.handshake.address);
 
-    switch (product) {
-        case 'A23':
-            console.log('A23');
-            rpio.open(15, rpio.OUTPUT, rpio.HIGH);
-            rpio.write(15, rpio.LOW);
-            rpio.sleep(5.2);
-            rpio.write(15, rpio.HIGH);
-            client.emit('done', product);
-            break;
-        case 'A22':
-            console.log('A22');
-            rpio.open(11, rpio.OUTPUT, rpio.HIGH);
-            rpio.write(11, rpio.LOW);
-            rpio.sleep(5.2);
-            rpio.write(11, rpio.HIGH);
-            client.emit('done', product);
-            break;
-        case 'A51':
-            console.log('A51');
-            rpio.open(12, rpio.OUTPUT, rpio.HIGH);
-            rpio.write(12, rpio.LOW);
-            rpio.sleep(5.2);
-            rpio.write(12, rpio.HIGH);
-            client.emit('done', product);
-            break;
-        case 'A52':
-            console.log('A52');
-            rpio.open(16, rpio.OUTPUT, rpio.HIGH);
-            rpio.write(16, rpio.LOW);
-            rpio.sleep(5.2);
-            rpio.write(16, rpio.HIGH);
-            client.emit('done', product);
-            break;
-        case 'A53':
-            console.log('A53');
-            rpio.open(18, rpio.OUTPUT, rpio.HIGH);
-            rpio.write(18, rpio.LOW);
-            rpio.sleep(5.2);
-            rpio.write(18, rpio.HIGH);
-            client.emit('done', product);
-            break;
-        default:
-            client.emit('done');
-      }
-  });
+    socket.on(events.PRODUCT, (product) => {
+        console.log('New product requested: ', product);
+
+        console.log(`Emit new event: ${events.BUSY}`);
+        client.emit(events.BUSY);
+
+        switch (product) {
+            case 'A23':
+                distributeProduct(15, product, 5.2);
+                break;
+            case 'A22':
+                distributeProduct(11, product, 5.2);
+                break;
+            case 'A51':
+                distributeProduct(12, product, 5.2);
+                break;
+            case 'A52':
+                distributeProduct(16, product, 5.2);
+                break;
+            case 'A53':
+                distributeProduct(18, product, 5.2);
+                break;
+            default:
+                client.emit(events.DONE);
+        }
+    });
 });
 
+function distributeProduct(pin, product, duration) {
+    console.log('Start distributing product: ', product);
+    rpio.open(pin, rpio.OUTPUT, rpio.HIGH);
+    rpio.write(pin, rpio.LOW);
+    rpio.sleep(duration);
+    rpio.write(pin, rpio.HIGH);
+    console.log('Finished distributing product: ', product);
+    console.log(`Emit new event: ${events.DONE}`);
+    client.emit(events.DONE, product);
+}
+
 http.listen(settings.PISERVER_PORT, '0.0.0.0', () => {
-  console.log(`Server listening on port ${settings.PISERVER_PORT}`);
+    console.log(`Server listening on port ${settings.PISERVER_PORT}`);
 });
