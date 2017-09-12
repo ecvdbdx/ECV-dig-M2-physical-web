@@ -50,13 +50,13 @@ io.on(events.CONNECTION, (socket) => {
             }
             console.log(product, `Stock updated for product: ${product}`);
             console.log(product, `Emit new event: ${events.UPDATE_STOCK}`);
-            socket.emit(events.PROCESSING, false);
             socket.broadcast.emit(events.UPDATE_STOCK, product);
         });
 
         console.log(`Emit new event: ${events.DONE}`);
         isBusy = false;
         socket.broadcast.emit(events.DONE);
+        socket.broadcast.emit(events.PROCESSING, false);
     });
 
     socket.on(events.PRODUCT, (product) => {
