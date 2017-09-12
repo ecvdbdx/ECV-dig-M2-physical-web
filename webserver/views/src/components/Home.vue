@@ -31,6 +31,7 @@
       return {
         products: [],
         isBusy: false,
+        processing: false,
       };
     },
     mounted() {
