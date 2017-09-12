@@ -9,7 +9,7 @@ const newProducts = [
 		name: 'Smarties',
 		max_stock: 15,
 		current_stock: 5,
-		machine_id: 'A21',
+		machine_id: 'A25',
 		image_url: 'static/products/smarties.jpg',
 		category: 'Bonbons'
 	},
@@ -17,7 +17,7 @@ const newProducts = [
 		name: 'Balisto',
 		max_stock: 15,
 		current_stock: 9,
-		machine_id: 'A22',
+		machine_id: 'A27',
 		image_url: 'static/products/balisto.jpg',
 		category: 'Biscuits'
 	},
@@ -25,7 +25,7 @@ const newProducts = [
 		name: 'Smokehouse Almonds',
 		max_stock: 6,
 		current_stock: 3,
-		machine_id: 'A23',
+		machine_id: 'A26',
 		image_url: 'static/products/smokehouse-almonds.jpg',
 		category: 'Biscuits'
 	},
@@ -33,7 +33,7 @@ const newProducts = [
 		name: 'Hépar',
 		max_stock: 6,
 		current_stock: 6,
-		machine_id: 'A24',
+		machine_id: 'A57',
 		image_url: 'static/products/hepar.jpg',
 		category: 'Boisson'
 	},
@@ -41,7 +41,7 @@ const newProducts = [
 		name: 'Guinness',
 		max_stock: 6,
 		current_stock: 5,
-		machine_id: 'A25',
+		machine_id: 'A51',
 		image_url: 'static/products/guinness.png',
 		category: 'Boisson'
 	},
@@ -49,7 +49,7 @@ const newProducts = [
 		name: 'Orange',
 		max_stock: 6,
 		current_stock: 5,
-		machine_id: 'A26',
+		machine_id: 'A54',
 		image_url: 'static/products/river-orange.jpg',
 		category: 'Boisson'
 	},
@@ -57,7 +57,7 @@ const newProducts = [
 		name: 'Smoothie Pomme/Fraise',
 		max_stock: 6,
 		current_stock: 5,
-		machine_id: 'A27',
+		machine_id: 'A56',
 		image_url: 'static/products/ikea-apple-strawberry.JPG',
 		category: 'Boisson'
 	},
@@ -65,7 +65,7 @@ const newProducts = [
 		name: 'Smoothie Framboise',
 		max_stock: 6,
 		current_stock: 5,
-		machine_id: 'A28',
+		machine_id: 'A55',
 		image_url: 'static/products/ikea-raspberry.JPG',
 		category: 'Boisson'
 	},
@@ -73,7 +73,7 @@ const newProducts = [
 		name: 'Choco & Biscuit',
 		max_stock: 15,
 		current_stock: 5,
-		machine_id: 'A51',
+		machine_id: 'A23',
 		image_url: 'static/products/chateau-choco.jpg',
 		category: 'Bonbons'
 	},
@@ -81,7 +81,7 @@ const newProducts = [
 		name: 'Mini Brownie',
 		max_stock: 15,
 		current_stock: 9,
-		machine_id: 'A52',
+		machine_id: 'A22',
 		image_url: 'static/products/mini-brownie.jpg',
 		category: 'Biscuits'
 	},
@@ -89,7 +89,7 @@ const newProducts = [
 		name: 'Smokehouse Almonds',
 		max_stock: 6,
 		current_stock: 3,
-		machine_id: 'A53',
+		machine_id: 'A26',
 		image_url: 'static/products/smokehouse-almonds.jpg',
 		category: 'Biscuits'
 	},
@@ -97,7 +97,7 @@ const newProducts = [
 		name: 'Hépar',
 		max_stock: 6,
 		current_stock: 6,
-		machine_id: 'A54',
+		machine_id: 'A57',
 		image_url: 'static/products/hepar.jpg',
 		category: 'Boisson'
 	},
@@ -105,7 +105,7 @@ const newProducts = [
 		name: 'Guinness',
 		max_stock: 6,
 		current_stock: 5,
-		machine_id: 'A55',
+		machine_id: 'A51',
 		image_url: 'static/products/guinness.png',
 		category: 'Boisson'
 	},
@@ -113,7 +113,7 @@ const newProducts = [
 		name: 'Guinness',
 		max_stock: 6,
 		current_stock: 5,
-		machine_id: 'A56',
+		machine_id: 'A51',
 		image_url: 'static/products/guinness.png',
 		category: 'Boisson'
 	},
@@ -121,7 +121,7 @@ const newProducts = [
 		name: 'Guinness',
 		max_stock: 6,
 		current_stock: 5,
-		machine_id: 'A57',
+		machine_id: 'A51',
 		image_url: 'static/products/guinness.png',
 		category: 'Boisson'
 	},
@@ -129,7 +129,7 @@ const newProducts = [
 		name: 'Guinness',
 		max_stock: 6,
 		current_stock: 5,
-		machine_id: 'A58',
+		machine_id: 'A51',
 		image_url: 'static/products/guinness.png',
 		category: 'Boisson'
 	},
