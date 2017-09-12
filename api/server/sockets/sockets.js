@@ -3,6 +3,10 @@ const path = require('path');
 const settings = require('../../../settings.js');
 const cors = require('cors');
 
+const mongojs = require('mongojs');
+const db = mongojs('gmab_db');
+const products = db.collection('products');
+
 const app = express();
 
 app.use(cors());
@@ -29,9 +33,16 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('busy');
   });
 
-  socket.on('done', () => {
+  socket.on('done', (product) => {
     console.log('done!');
     socket.broadcast.emit('done');
+
+    products.update({'machine_id': product}, {$inc: {'current_stock': -1}}, (err, saved) => {
+      if (err) {
+        throw err;
+      }
+      console.log(product, 'stock updated');
+    });
   });
 
   socket.on('test', (msg) => {
