@@ -25,7 +25,7 @@
     position: fixed;
     padding: 22px;
     background: linear-gradient(190deg, #54D4B7, #00848E);
-    bottom: -100px;
+    bottom: -100%;
     width: 100%;
     left: 0;
     color: #fff;

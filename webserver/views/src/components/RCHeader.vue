@@ -13,8 +13,8 @@
 <style>
   header {
     padding: 18px 0 25px 0;
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Bevan', cursive;
     font-size: 2em;
-    color: #00BFA5;
+    color: rgb(44, 62, 80);
   }
 </style>
