@@ -1,9 +1,17 @@
 <template>
   <div class="container-fluid">
+    <navigation :categories="categories"></navigation>
     <div class="row">
       <div class="col-md-12" style="text-align: center; padding-bottom: 80px;">
         <div class="row">
-          <product v-for="product in products" :product="product" :isBusy="isBusy" :key="product.id"></product>
+          <product
+            v-for="product in products"
+            :product="product"
+            :isBusy="isBusy"
+            :key="product.id"
+            v-show="product.category === currentCategory"
+            :class="{show: product.category === currentCategory}">
+          </product>
         </div>
       </div>
     </div>
@@ -24,6 +32,7 @@
   import Poppin from './Poppin';
   import * as settings from '../../../../settings';
   import * as events from '../../../../socket-events';
+  import Navigation from './Navigation';
 
   export default {
     name: 'Home',
@@ -32,12 +41,26 @@
         products: [],
         isBusy: false,
         processing: false,
+        categories: [],
+        currentCategory: null,
       };
+    },
+    methods: {
+      filterCategories() {
+        this.products.forEach((product) => {
+          const test = this.categories.find(category => category === product.category);
+          if (typeof test === 'undefined') {
+            this.categories.push(product.category);
+          }
+          this.currentCategory = this.categories[0];
+        });
+      },
     },
     mounted() {
       axios.get(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_API_PORT}/api/products`)
         .then((response) => {
           this.products = response.data;
+          this.filterCategories();
         });
     },
     socket: {
@@ -64,6 +87,7 @@
     components: {
       Product,
       Poppin,
+      Navigation,
     },
   };
 </script>
