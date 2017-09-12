@@ -7,6 +7,7 @@
         </div>
       </div>
     </div>
+    <poppin :class="{active: showPoppin}"></poppin>
   </div>
 </template>
 
@@ -19,7 +20,8 @@
 
 <script>
   import axios from 'axios';
-  import Product from '../components/Product';
+  import Product from './Product';
+  import Poppin from './Poppin';
   import * as settings from '../../../../settings';
   import * as events from '../../../../socket-events';
 
@@ -47,10 +49,20 @@
           console.log(`Receive new event: ${events.DONE}`);
           this.isBusy = false;
         },
+        processing(processing) {
+          console.log(`Receive new event: ${events.PROCESSING}`);
+          this.processing = processing;
+        },
+      },
+    },
+    computed: {
+      showPoppin() {
+        return !this.processing && this.isBusy;
       },
     },
     components: {
       Product,
+      Poppin,
     },
   };
 </script>
