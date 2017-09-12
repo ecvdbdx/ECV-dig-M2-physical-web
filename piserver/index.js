@@ -7,6 +7,7 @@ const clientio = require('socket.io-client');
 
 const settings = require('../settings.js');
 const events = require('../socket-events');
+const machine = require('../machine-mapping');
 
 // Creates Socket.io client to emit events to webserver
 const client = clientio.connect(`${settings.WEBSERVER_ADDRESS}:${settings.WEBSERVER_SOCKET_PORT}`);
@@ -20,34 +21,23 @@ io.on(events.CONNECTION, (socket) => {
         console.log(`Emit new event: ${events.BUSY}`);
         client.emit(events.BUSY);
 
-        switch (product) {
-            case 'A23':
-                distributeProduct(15, product, 5.2);
-                break;
-            case 'A22':
-                distributeProduct(11, product, 5.2);
-                break;
-            case 'A51':
-                distributeProduct(12, product, 5.2);
-                break;
-            case 'A52':
-                distributeProduct(16, product, 5.2);
-                break;
-            case 'A53':
-                distributeProduct(18, product, 5.2);
-                break;
-            default:
-                client.emit(events.DONE);
+        if (machine[product]) {
+            distributeProduct(product);
+        } else {
+            client.emit(events.DONE);
         }
     });
 });
 
-function distributeProduct(pin, product, duration) {
+function distributeProduct(product) {
     console.log('Start distributing product: ', product);
-    rpio.open(pin, rpio.OUTPUT, rpio.HIGH);
-    rpio.write(pin, rpio.LOW);
-    rpio.sleep(duration);
-    rpio.write(pin, rpio.HIGH);
+    rpio.open(machine[product].pin_line, rpio.OUTPUT, rpio.LOW);
+    rpio.open(machine[product].pin_row, rpio.OUTPUT, rpio.HIGH);
+    rpio.write(machine[product].pin_line, rpio.HIGH);
+    rpio.write(machine[product].pin_row, rpio.LOW);
+    rpio.sleep(machine[product].duration);
+    rpio.write(machine[product].pin_line, rpio.LOW);
+    rpio.write(machine[product].pin_row, rpio.HIGH);
     console.log('Finished distributing product: ', product);
     console.log(`Emit new event: ${events.DONE}`);
     client.emit(events.DONE, product);
