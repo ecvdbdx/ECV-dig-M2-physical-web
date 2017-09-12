@@ -49,6 +49,8 @@ io.on(events.CONNECTION, (socket) => {
                 throw err;
             }
             console.log(product, `Stock updated for product: ${product}`);
+            console.log(product, `Emit new event: ${events.UPDATE_STOCK}`);
+            socket.broadcast.emit(events.UPDATE_STOCK, product);
         });
 
         console.log(`Emit new event: ${events.DONE}`);

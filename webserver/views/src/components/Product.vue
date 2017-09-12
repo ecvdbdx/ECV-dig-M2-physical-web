@@ -39,6 +39,11 @@
         done() {
           this.loading = false;
         },
+        update_stock(machineId) {
+          if (machineId === this.product.machine_id) {
+            this.product.current_stock -= 1;
+          }
+        },
       },
     },
     computed: {
