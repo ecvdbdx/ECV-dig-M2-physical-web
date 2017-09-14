@@ -31,12 +31,12 @@ io.on(events.CONNECTION, (socket) => {
 
 function distributeProduct(product) {
     console.log('Start distributing product: ', product);
-    rpio.open(machine[product].pin_line, rpio.OUTPUT, rpio.LOW);
+    rpio.open(machine[product].pin_line, rpio.OUTPUT, rpio.HIGH);
     rpio.open(machine[product].pin_row, rpio.OUTPUT, rpio.HIGH);
-    rpio.write(machine[product].pin_line, rpio.HIGH);
+    rpio.write(machine[product].pin_line, rpio.LOW);
     rpio.write(machine[product].pin_row, rpio.LOW);
     rpio.sleep(machine[product].duration);
-    rpio.write(machine[product].pin_line, rpio.LOW);
+    rpio.write(machine[product].pin_line, rpio.HIGH);
     rpio.write(machine[product].pin_row, rpio.HIGH);
     console.log('Finished distributing product: ', product);
     console.log(`Emit new event: ${events.DONE}`);
